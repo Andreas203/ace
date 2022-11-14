@@ -10,8 +10,10 @@ const io = require('socket.io')(server,
     }
 );
 
-io.on('connection', (socket) => {
+
+io.on('connection', (socket: any) => {
     console.log('a user has connected')
+
 });
 
 server.listen(port, () => {
