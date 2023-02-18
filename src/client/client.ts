@@ -1,12 +1,11 @@
 import { World } from './World';
-import { io } from 'socket.io-client'
+import { io } from 'socket.io-client';
 
 async function main () {
-
 	const socket = io(
-		'ws://localhost:3000', {transports: ['websocket']}
+		'ws://localhost:3000', { transports: ['websocket'] }
 	);
-	
+
 	const container = document.body;
 
 	const world = new World(container);
