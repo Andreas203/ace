@@ -7,7 +7,6 @@ import { Loop } from './systems/Loop';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { createControls } from './systems/controls';
 
-
 class World {
 	camera: PerspectiveCamera;
 	scene: Scene;
@@ -42,16 +41,15 @@ class World {
 	async init () {
 		// Adding animations to loop
 		this.loop.updatables.push();
-    }
+	}
 
-    private createScene () {
-        const scene = new Scene();
-    
-        scene.background = new Color('skyblue');
-    
-        return scene;
-    }
+	private createScene () {
+		const scene = new Scene();
 
+		scene.background = new Color('skyblue');
+
+		return scene;
+	}
 }
 
 export { World };
