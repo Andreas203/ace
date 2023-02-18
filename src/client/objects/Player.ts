@@ -1,10 +1,6 @@
 import { BoxGeometry, Mesh, MeshBasicMaterial, PerspectiveCamera, Vector3 } from "three";
 
 class Player {
-<<<<<<< HEAD
-
-}
-=======
     playerMesh: Mesh
 
     constructor(p: Vector3){
@@ -22,4 +18,3 @@ class Player {
 }
 
 export { Player };
->>>>>>> 9c54026 (added logic for adding a match with players on new connections)
