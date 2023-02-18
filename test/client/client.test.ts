@@ -1,3 +1,3 @@
 test('test jest setup', () => {
-  expect(true);
+	expect(true);
 });
