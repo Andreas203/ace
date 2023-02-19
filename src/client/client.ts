@@ -1,13 +1,33 @@
 import { World } from './World';
+import { io } from 'socket.io-client'
+import { PerspectiveCamera, Vector3 } from 'three';
+import { Player } from './objects/Player';
 
 async function main () {
-  const container = document.body;
+	const socket = io(
+		'ws://localhost:3000', { transports: ['websocket'] }
+	);
 
-  const world = new World(container);
+	var camera: PerspectiveCamera = new PerspectiveCamera(100, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-  await world.init();
 
-  world.start();
+	socket.on("pos", (p) => {
+		camera.position.set(p.x, p.y, p.z);
+	})
+
+	const container = document.body;
+
+	const world = new World(container, camera);
+
+	await world.init();
+
+	socket.on('playerPosition', (p) => {
+		console.log('newPlayer connected');
+		world.addPlayer(new Player(p));	
+	})
+	
+
+	world.start();
 }
 
 main();
