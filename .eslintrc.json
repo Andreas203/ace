@@ -23,7 +23,7 @@
         "@typescript-eslint",
         "jest"
     ],
-    "ignorePatterns": ["dist"],
+    "ignorePatterns": ["dist", "enums"],
     "rules": {
         "indent": ["error", 2],
         "semi": [2, "always"]
