@@ -46,6 +46,7 @@ class World {
 
 	private createScene () {
 		const scene = new Scene();
+		return scene
 	}
 	
 	public addPlayer(player: Player) {
