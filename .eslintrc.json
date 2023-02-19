@@ -6,17 +6,26 @@
     "extends": [
         "standard"
     ],
+    "overrides": [
+        {
+          "files": ["test/**"],
+          "plugins": ["jest"],
+          "extends": ["plugin:jest/recommended"],
+          "rules": { "jest/prefer-expect-assertions": "off" }
+        }
+    ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
     "plugins": [
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "jest"
     ],
     "ignorePatterns": ["dist"],
     "rules": {
-        "indent": ["error", "tab"],
+        "indent": ["error", 2],
         "semi": [2, "always"]
     }
 }
