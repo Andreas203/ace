@@ -1,37 +1,35 @@
-import { Vector3 } from "three";
-import { Game } from "./Game";
-import { Winner } from "./enums/Winner"
-import { mode } from "./helper/helpers"
+import { Game } from './Game';
+import { Winner } from './enums/Winner';
+import { mode } from './helper/helpers';
 
-class Set{
-    games: [Game]
-    currentGame: number
+class Set {
+  games: [Game];
+  currentGame: number;
 
-    constructor(){
-        this.currentGame = 0
-        this.games = [new Game()]
-    }
+  constructor () {
+    this.currentGame = 0;
+    this.games = [new Game()];
+  }
 
-    updateGame(player: number){
-        this.getCurrentGame().incPoint(player)
-    }
+  updateGame (player: number) {
+    this.getCurrentGame().incPoint(player);
+  }
 
-    getCurrentGame(){
-        return this.games[this.currentGame]
-    }
+  getCurrentGame () {
+    return this.games[this.currentGame];
+  }
 
-    getWinner(){
-        var winners: Winner[] = []
-        this.games.forEach(game => {
-            winners.push(game.winner)
-        });
-        return mode(winners)
-    }
+  getWinner () {
+    const winners: Winner[] = [];
+    this.games.forEach(game => {
+      winners.push(game.winner);
+    });
+    return mode(winners);
+  }
 
-    isFinished(){
-        return this.getCurrentGame().winner != Winner.None
-    }
-
+  isFinished () {
+    return this.getCurrentGame().winner !== Winner.None;
+  }
 }
 
-export {Set}
+export { Set };

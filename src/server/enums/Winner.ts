@@ -4,4 +4,4 @@ enum Winner {
     None
   }
 
-export {Winner}
+export { Winner };

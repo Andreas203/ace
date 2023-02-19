@@ -1,55 +1,54 @@
-import { ConnectedPlayer } from "./ConnectedPlayer";
-import { Set } from "./Set";
+import { ConnectedPlayer } from './ConnectedPlayer';
+import { Set } from './Set';
 
-class Match{
-    players: ConnectedPlayer[];
-    sets: [Set, Set, Set];
-    currentSet: number
-    
-    constructor(){
-        this.currentSet = 0;
-        this.players = []
-        this.sets = [new Set(), new Set(), new Set()]
-    }
+class Match {
+  players: ConnectedPlayer[];
+  sets: [Set, Set, Set];
+  currentSet: number;
 
-    addNewPlayer(player: ConnectedPlayer) {
-        this.players.push(player);
-        this.broadcastLocations(player);
-    }
+  constructor () {
+    this.currentSet = 0;
+    this.players = [];
+    this.sets = [new Set(), new Set(), new Set()];
+  }
 
-    removePlayer(playerId: number){
-        this.players.splice(playerId);
-    }
+  addNewPlayer (player: ConnectedPlayer) {
+    this.players.push(player);
+    this.broadcastLocations(player);
+  }
 
-    broadcastLocations(player: ConnectedPlayer){
-        this.players.forEach(p => {
-            p.socket.emit('playerPosition', player.position)
-            player.socket.emit('playerPosition', p.position)
-        });
-    }
+  removePlayer (playerId: number) {
+    this.players.splice(playerId);
+  }
 
-    getGameScore(){
-        return this.getCurrentSet().getCurrentGame()
-    }
+  broadcastLocations (player: ConnectedPlayer) {
+    this.players.forEach(p => {
+      p.socket.emit('playerPosition', player.position);
+      player.socket.emit('playerPosition', p.position);
+    });
+  }
 
-    updateGameScore(player: number){
-        this.getCurrentSet().updateGame(player)
-        if(this.getCurrentSet().isFinished() && this.currentSet < 2){
-            this.currentSet += 1
-        }else if(this.getCurrentSet().isFinished()){
-            this.getWinner()
-        }
-    }
+  getGameScore () {
+    return this.getCurrentSet().getCurrentGame();
+  }
 
-    getWinner(){
-        this.sets.forEach(set => {
-            set.getWinner()
-        });
+  updateGameScore (player: number) {
+    this.getCurrentSet().updateGame(player);
+    if (this.getCurrentSet().isFinished() && this.currentSet < 2) {
+      this.currentSet += 1;
+    } else if (this.getCurrentSet().isFinished()) {
+      this.getWinner();
     }
+  }
 
-    getCurrentSet(){
-        return this.sets[this.currentSet]
-    }
-    
+  getWinner () {
+    this.sets.forEach(set => {
+      set.getWinner();
+    });
+  }
+
+  getCurrentSet () {
+    return this.sets[this.currentSet];
+  }
 }
-export {Match}
+export { Match };
