@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "build": "webpack --config ./src/client/webpack.prod.js",
     "client": "webpack serve --config ./src/client/webpack.dev.js",
     "server": "nodemon src/server/server.ts",
-    "dev": "concurrently \"npm run client\" \"npm run server\"",
+    "dev": "concurrently \"yarn run client\" \"yarn run server\"",
     "lint": "npx eslint '**/*.ts'"
   },
   "author": "",
@@ -17,6 +18,7 @@
     "@types/jest": "^29.2.2",
     "@types/three": "^0.146.0",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "@typescript-eslint/parser": "^5.55.0",
     "eslint": "^8.20.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
