@@ -1,4 +1,4 @@
-import { Game } from '../../src/server/Game';
+import { Game } from '../../src/server/Game.ts';
 
 describe('Game increment from', () => {
   test('0-0', () => {
