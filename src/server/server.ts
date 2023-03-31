@@ -2,7 +2,7 @@ import { Vector3 } from 'three';
 import { ConnectedPlayer } from './ConnectedPlayer.ts';
 import { Match } from './Match.ts';
 import http from 'http';
-import { Server } from "socket.io";
+import { Server } from 'socket.io';
 
 const server = http.createServer();
 const port = 3000;
