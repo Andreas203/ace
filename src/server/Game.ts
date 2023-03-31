@@ -1,6 +1,6 @@
-import { Winner } from './enums/Winner';
+import { Winner } from './enums/Winner.ts';
 
-class Game {
+export class Game {
   points: [number, number];
   winner: Winner = Winner.None;
 
@@ -27,5 +27,3 @@ class Game {
     }
   }
 }
-
-export { Game };
