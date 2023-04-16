@@ -1,8 +1,8 @@
-import { Game } from './Game';
-import { Winner } from './enums/Winner';
-import { mode } from './helper/helpers';
+import { Game } from './Game.ts';
+import { Winner } from './enums/Winner.ts';
+import { mode } from './helper/helpers.ts';
 
-class Set {
+export class Set {
   games: [Game];
   currentGame: number;
 
@@ -31,5 +31,3 @@ class Set {
     return this.getCurrentGame().winner !== Winner.None;
   }
 }
-
-export { Set };

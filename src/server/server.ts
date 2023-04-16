@@ -1,12 +1,13 @@
 import { Vector3 } from 'three';
-import { ConnectedPlayer } from './ConnectedPlayer';
-import { Match } from './Match';
+import { ConnectedPlayer } from './ConnectedPlayer.ts';
+import { Match } from './Match.ts';
+import http from 'http';
+import { Server } from 'socket.io';
 
-const http = require('http');
 const server = http.createServer();
 const port = 3000;
 
-const io = require('socket.io')(server,
+const io = new Server(server,
   {
     cors: {
       origin: '*'

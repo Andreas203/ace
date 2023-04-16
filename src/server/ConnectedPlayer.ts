@@ -1,6 +1,6 @@
 import { Vector3 } from 'three';
 
-class ConnectedPlayer {
+export class ConnectedPlayer {
   position: Vector3;
   socket: any;
 
@@ -10,5 +10,3 @@ class ConnectedPlayer {
     this.socket.emit('playerPosition', this.position);
   }
 }
-
-export { ConnectedPlayer };

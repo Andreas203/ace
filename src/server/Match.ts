@@ -1,7 +1,7 @@
-import { ConnectedPlayer } from './ConnectedPlayer';
-import { Set } from './Set';
+import { ConnectedPlayer } from './ConnectedPlayer.ts';
+import { Set } from './Set.ts';
 
-class Match {
+export class Match {
   players: ConnectedPlayer[];
   sets: [Set, Set, Set];
   currentSet: number;
@@ -51,4 +51,3 @@ class Match {
     return this.sets[this.currentSet];
   }
 }
-export { Match };
