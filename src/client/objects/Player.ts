@@ -17,9 +17,7 @@ class Player {
     this.controls = new CharacterController();
   }
 
-  
-
-  tick (){
+  tick () {
     if (this.controls.keys.forward) {
       this.playerMesh.position.z -= 0.1;
     }
@@ -32,7 +30,7 @@ class Player {
     if (this.controls.keys.right) {
       this.playerMesh.position.x += 0.1;
     }
-    this.socket.emit("updatePosition", this.playerMesh.position);
+    this.socket.emit('updatePosition', this.playerMesh.position);
   }
 }
 

@@ -1,6 +1,6 @@
 import { createRenderer } from './systems/renderer';
 import { Resizer } from './systems/Resizer';
-import { PerspectiveCamera, Scene, Vector3, WebGLRenderer, LineBasicMaterial, BufferGeometry, Line, BoxGeometry } from 'three';
+import { PerspectiveCamera, Scene, Vector3, WebGLRenderer, LineBasicMaterial, BufferGeometry, Line } from 'three';
 
 import { Loop } from './systems/Loop';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
@@ -53,7 +53,7 @@ class World {
   }
 
   public startGame (socket: any) {
-    const player = new Player(new Vector3(1,1,1), socket);
+    const player = new Player(new Vector3(1, 1, 1), socket);
     const opponent = new Opponent(new Vector3(0, 0, 0), socket);
     this.scene.add(player.playerMesh);
     this.scene.add(opponent.playerMesh);
@@ -66,25 +66,25 @@ class World {
     this.scene.add(court.courtMesh);
 
     this.scene.add(court.net);
-    const material = new LineBasicMaterial( { color: 0xffff } );
+    const material = new LineBasicMaterial({ color: 0xffff });
     const points = [];
-    points.push( new Vector3( -13.5, 0, 0 ) );
-    points.push( new Vector3( -13.5, 0, 13.5 ) );
-    points.push( new Vector3( 13.5, 0, 13.5 ) );
-    points.push( new Vector3( 13.5, 0, 0 ) );
-    points.push( new Vector3( 13.5, 0, -13.5 ) );
-    points.push( new Vector3( -13.5, 0, -13.5 ) );
-    points.push( new Vector3( -13.5, 0, 0 ) );
-    points.push( new Vector3( 0, 0, 0 ) );
-    points.push( new Vector3( 0, 0, 13.5 ) );
-    points.push( new Vector3( 0, 0, -13.5 ) );
-    points.push( new Vector3( 0, 0, 0 ) );
-    points.push( new Vector3( 13.5, 0, 0 ) );
+    points.push(new Vector3(-13.5, 0, 0));
+    points.push(new Vector3(-13.5, 0, 13.5));
+    points.push(new Vector3(13.5, 0, 13.5));
+    points.push(new Vector3(13.5, 0, 0));
+    points.push(new Vector3(13.5, 0, -13.5));
+    points.push(new Vector3(-13.5, 0, -13.5));
+    points.push(new Vector3(-13.5, 0, 0));
+    points.push(new Vector3(0, 0, 0));
+    points.push(new Vector3(0, 0, 13.5));
+    points.push(new Vector3(0, 0, -13.5));
+    points.push(new Vector3(0, 0, 0));
+    points.push(new Vector3(13.5, 0, 0));
 
-    const geometry = new BufferGeometry().setFromPoints( points );
-    const line = new Line( geometry, material );  
+    const geometry = new BufferGeometry().setFromPoints(points);
+    const line = new Line(geometry, material);
     line.renderOrder = 1;
-    this.scene.add( line );
+    this.scene.add(line);
     // this.initBall(court);
   }
 
@@ -93,7 +93,6 @@ class World {
     this.scene.add(ball.ballMesh);
     this.loop.updatables.push(ball);
   }
-
 }
 
 export { World };

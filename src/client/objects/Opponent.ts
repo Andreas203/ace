@@ -14,9 +14,9 @@ class Opponent {
     this.playerMesh.castShadow = true;
   }
 
-  tick (){
+  tick () {
     this.socket.on('opponentPosition', (p: Vector3) => {
-      this.playerMesh.position.set(p.x, p.y, p.z)
+      this.playerMesh.position.set(p.x, p.y, p.z);
     });
   }
 }

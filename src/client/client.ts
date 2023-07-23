@@ -1,14 +1,13 @@
 import { World } from './World';
 import { io } from 'socket.io-client';
 import { PerspectiveCamera } from 'three';
-import { Player } from './objects/Player';
 
 async function main () {
   const socket = io(
     'ws://localhost:3000', { transports: ['websocket'] }
   );
 
-  console.log('connected to server')
+  console.log('connected to server');
 
   const camera: PerspectiveCamera = new PerspectiveCamera(100, window.innerWidth / window.innerHeight, 0.1, 1000);
 
@@ -23,8 +22,8 @@ async function main () {
   world.start();
 
   socket.on('startGame', () => {
-    console.log('starting game')
-    world.startGame(socket)
+    console.log('starting game');
+    world.startGame(socket);
   });
 }
 
