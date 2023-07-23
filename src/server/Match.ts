@@ -2,11 +2,13 @@ import { ConnectedPlayer } from './ConnectedPlayer.ts';
 import { Set } from './Set.ts';
 
 export class Match {
+  room: number;
   players: ConnectedPlayer[];
   sets: [Set, Set, Set];
   currentSet: number;
 
-  constructor () {
+  constructor (room: number) {
+    this.room = room;
     this.currentSet = 0;
     this.players = [];
     this.sets = [new Set(), new Set(), new Set()];
@@ -14,18 +16,10 @@ export class Match {
 
   addNewPlayer (player: ConnectedPlayer) {
     this.players.push(player);
-    this.broadcastLocations(player);
   }
 
   removePlayer (playerId: number) {
     this.players.splice(playerId);
-  }
-
-  broadcastLocations (player: ConnectedPlayer) {
-    this.players.forEach(p => {
-      p.socket.emit('playerPosition', player.position);
-      player.socket.emit('playerPosition', p.position);
-    });
   }
 
   getGameScore () {

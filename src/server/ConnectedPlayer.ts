@@ -4,9 +4,8 @@ export class ConnectedPlayer {
   position: Vector3;
   socket: any;
 
-  constructor (socket: any) {
-    this.position = new Vector3(Math.random() * 3, 0, Math.random() * 3);
+  constructor (socket: any, position?: Vector3) {
+    this.position = position;
     this.socket = socket;
-    this.socket.emit('playerPosition', this.position);
   }
 }
