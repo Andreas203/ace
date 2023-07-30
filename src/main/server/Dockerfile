@@ -3,7 +3,7 @@ WORKDIR /
 COPY package*.json ./
 COPY tsconfig*.json ./
 
-COPY ./src/server ./app
+COPY ./src/main/server ./app
 
 RUN npm install -g ts-node
 RUN yarn install

@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "test": "jest",
-    "build": "webpack --config ./src/client/webpack.prod.cjs",
-    "client": "webpack serve --config ./src/client/webpack.dev.cjs",
-    "server": "ts-node-esm src/server/server.ts",
+    "build": "webpack --config ./src/main/client/webpack.prod.cjs",
+    "client": "webpack serve --config ./src/main/client/webpack.dev.cjs",
+    "server": "ts-node-esm src/main/server/server.ts",
     "dev": "concurrently \"yarn run client\" \"yarn run server\"",
     "lint": "npx eslint '**/*.ts'"
   },

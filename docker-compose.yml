@@ -3,7 +3,7 @@ services:
     container_name: ace-client
     image: ace-client
     build:
-      dockerfile: ./src/client/Dockerfile
+      dockerfile: ./src/main/client/Dockerfile
     ports:
       - "80:80"
     depends_on:
@@ -12,6 +12,6 @@ services:
     container_name: ace-server
     image: ace-server
     build:
-      dockerfile: ./src/server/Dockerfile
+      dockerfile: ./src/main/server/Dockerfile
     ports:
       - "3000:3000"
