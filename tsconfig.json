@@ -1,9 +1,9 @@
 {
-    "compilerOptions": {
-      "esModuleInterop": true,
-      "module": "es2022",
-      "noEmit": true,
-      "allowImportingTsExtensions": true,
-      "moduleResolution": "node",
-    }
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "module": "CommonJS",
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "moduleResolution": "node",
+  }
 }

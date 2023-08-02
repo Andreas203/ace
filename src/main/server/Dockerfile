@@ -10,4 +10,4 @@ RUN yarn install
 
 EXPOSE 3000
   
-CMD ["ts-node-esm", "/app/server.ts"]
+CMD ["ts-node", "/app/server.ts"]

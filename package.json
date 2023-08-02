@@ -2,12 +2,12 @@
   "name": "ace",
   "version": "1.0.0",
   "description": "Threejs Typescript tennis game",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "test": "jest",
     "build": "webpack --config ./src/main/client/webpack.prod.cjs",
     "client": "webpack serve --config ./src/main/client/webpack.dev.cjs",
-    "server": "ts-node-esm src/main/server/server.ts",
+    "server": "ts-node src/main/server/server.ts",
     "dev": "concurrently \"yarn run client\" \"yarn run server\"",
     "lint": "npx eslint '**/*.ts'"
   },
