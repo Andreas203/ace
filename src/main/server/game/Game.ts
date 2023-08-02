@@ -1,4 +1,4 @@
-import { Winner } from './enums/Winner.ts';
+import { Winner } from '../enums/Winner.ts';
 
 export class Game {
   points: [number, number];

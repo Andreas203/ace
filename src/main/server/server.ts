@@ -1,6 +1,6 @@
 import { Vector3 } from 'three';
-import { ConnectedPlayer } from './ConnectedPlayer.ts';
-import { Match } from './Match.ts';
+import { ConnectedPlayer } from './game/ConnectedPlayer.ts';
+import { Match } from './game/Match.ts';
 import http from 'http';
 import { Server } from 'socket.io';
 

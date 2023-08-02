@@ -1,6 +1,6 @@
 import { Game } from './Game.ts';
-import { Winner } from './enums/Winner.ts';
-import { mode } from './helper/helpers.ts';
+import { Winner } from '../enums/Winner.ts';
+import { mode } from '../helper/helpers.ts';
 
 export class Set {
   games: [Game];
