@@ -1,6 +1,6 @@
 import { createRenderer } from './systems/renderer';
 import { Resizer } from './systems/Resizer';
-import { PerspectiveCamera, Scene, Vector3, WebGLRenderer, LineBasicMaterial, BufferGeometry, Line } from 'three';
+import { PerspectiveCamera, Scene, Vector3, WebGLRenderer, LineBasicMaterial, BufferGeometry, Line, ObjectLoader } from 'three';
 
 import { Loop } from './systems/Loop';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
@@ -10,6 +10,8 @@ import { Opponent } from './objects/Opponent';
 import { HardCourt } from './courts/CourtType';
 import { Court } from './objects/Court';
 import { TennisBall } from './objects/TennisBall';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { Racket } from './objects/Racket';
 
 class World {
   camera: PerspectiveCamera;
@@ -52,11 +54,13 @@ class World {
     return scene;
   }
 
-  public startGame (socket: any) {
+  public async startGame (socket: any) {
     const player = new Player(new Vector3(1, 1, 1), socket);
     const opponent = new Opponent(new Vector3(0, 0, 0), socket);
+    const racket = new Racket(this.scene);
     this.scene.add(player.playerMesh);
     this.scene.add(opponent.playerMesh);
+
     this.loop.updatables.push(player);
     this.loop.updatables.push(opponent);
   }

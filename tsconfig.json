@@ -4,6 +4,6 @@
     "module": "CommonJS",
     "noEmit": true,
     "allowImportingTsExtensions": true,
-    "moduleResolution": "node",
-  }
+    "moduleResolution": "node"
+    }
 }
