@@ -1,6 +1,6 @@
 import { createRenderer } from './systems/renderer';
 import { Resizer } from './systems/Resizer';
-import { PerspectiveCamera, Scene, Vector3, WebGLRenderer, LineBasicMaterial, BufferGeometry, Line } from 'three';
+import { PerspectiveCamera, Scene, Vector3, WebGLRenderer, LineBasicMaterial, BufferGeometry, Line, PlaneGeometry, DoubleSide, BoxGeometry, Mesh, MeshBasicMaterial, BackSide, TextureLoader } from 'three';
 
 import { Loop } from './systems/Loop';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
@@ -44,6 +44,7 @@ class World {
   async init () {
     // Adding animations to loop
     this.initCourt();
+    this.initSkybox();
     this.loop.updatables.push();
   }
 
@@ -93,6 +94,44 @@ class World {
     this.scene.add(ball.ballMesh);
     this.loop.updatables.push(ball);
   }
+
+  public initSkybox () {
+
+    const loader = new TextureLoader();
+
+    // load a resource
+    loader.load(
+      // resource URL
+      'textures/skybox/pruplenebula.jpg',
+
+      // onLoad callback
+      ( texture: any ) => {
+        console.log("texture loaded");
+        // in this example we create the material when the texture is loaded
+        const material = new MeshBasicMaterial( {
+          map: texture,
+          side: BackSide
+        } );
+
+        const skyboxGeo = new BoxGeometry(27, 80, 80);
+
+        const skybox = new Mesh(skyboxGeo, material);
+    
+    
+        this.scene.add(skybox);
+      },
+
+        // onProgress callback currently not supported
+        undefined,
+
+        // onError callback
+        function ( err: any ) {
+          console.error( 'An error happened.', err );
+        }
+      );
+    }
 }
+
+
 
 export { World };
