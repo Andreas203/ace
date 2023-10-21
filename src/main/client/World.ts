@@ -138,14 +138,10 @@ class World {
       // onLoad callback
       (texture: any) => {
         console.log('texture loaded');
-      (texture: any) => {
-        console.log('texture loaded');
         // in this example we create the material when the texture is loaded
-        const material = new MeshBasicMaterial({
         const material = new MeshBasicMaterial({
           map: texture,
           side: BackSide
-        });
         });
 
         const skyboxGeo = new BoxGeometry(40, 80, 100);
@@ -156,15 +152,7 @@ class World {
 
       // onProgress callback currently not supported
       undefined,
-      // onProgress callback currently not supported
-      undefined,
 
-      // onError callback
-      function (err: any) {
-        console.error('An error happened.', err);
-      }
-    );
-  }
       // onError callback
       function (err: any) {
         console.error('An error happened.', err);
