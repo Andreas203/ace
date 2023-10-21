@@ -9,7 +9,7 @@ class Court {
 
   constructor (courtType: CourtType) {
     this.courtType = courtType;
-    const geometry = new PlaneGeometry(27, 78);
+    const geometry = new PlaneGeometry(40, 100);
     geometry.computeBoundingBox();
     const material = new MeshBasicMaterial({ color: 'blue' });
     this.courtMesh = new Mesh(geometry, material);
