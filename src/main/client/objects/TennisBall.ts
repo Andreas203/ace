@@ -27,7 +27,7 @@ class TennisBall {
   }
 
   tick () {
-    const { ballCollisionBox, courtCollisionBox, playerCollisionBox } = this.collissionBoxes();
+    const { ballCollisionBox, courtCollisionBox } = this.collissionBoxes();
 
     this.acceleration = new Vector3(0, this.GRAVITY * this.SECONDS_PER_FRAME, 0);
 
@@ -53,10 +53,10 @@ class TennisBall {
     const courtCollisionBox = new Box3();
     courtCollisionBox.copy(this.court.courtMesh.geometry.boundingBox || ballCollisionBox).applyMatrix4(this.court.courtMesh.matrixWorld);
 
-    const playerCollisionBox = new Box3();
-    playerCollisionBox.copy(this.player.playerMesh.geometry.boundingBox || ballCollisionBox).applyMatrix4(this.player.playerMesh.matrixWorld);
+    // const playerCollisionBox = new Box3();
+    // playerCollisionBox.copy(this.player.playerMesh.geometry.boundingBox || ballCollisionBox).applyMatrix4(this.player.playerMesh.matrixWorld);
 
-    return { ballCollisionBox, courtCollisionBox, playerCollisionBox };
+    return { ballCollisionBox, courtCollisionBox };
   }
 
   private updatePosition (p: Vector3) {

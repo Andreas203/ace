@@ -53,10 +53,10 @@ class World {
 
   public startGame (socket: any) {
     const court = this.initCourt();
-    const player = new Player(new Vector3(1, 1, 1), socket);
-    const opponent = new Opponent(new Vector3(0, 0, 0), socket);
+    const player = new Player(this.camera, socket);
+    const opponent = new Opponent(new Vector3(0, 0, 10), socket);
     this.initBall(court, player, opponent);
-    this.scene.add(player.playerMesh);
+    // this.scene.add(player.playerMesh);
     this.scene.add(opponent.playerMesh);
     this.loop.updatables.push(player);
     this.loop.updatables.push(opponent);
@@ -89,9 +89,9 @@ class World {
   }
 
   public initBall (court: Court, player: Player, opponent: Opponent) {
-    const ball = new TennisBall(court, new Player(new Vector3(0, 0, 0), null));
-    this.scene.add(ball.ballMesh);
-    this.loop.updatables.push(ball);
+    // const ball = new TennisBall(court, new Player(new Vector3(0, 0, 0), null));
+    // this.scene.add(ball.ballMesh);
+    // this.loop.updatables.push(ball);
   }
 }
 
