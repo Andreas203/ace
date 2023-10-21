@@ -69,23 +69,55 @@ class World {
     this.scene.add(court.net);
     const material = new LineBasicMaterial({ color: 0xffff });
     const points = [];
-    points.push(new Vector3(-13.5, 0, 0));
-    points.push(new Vector3(-13.5, 0, 13.5));
+
+    // Service box 1
+    points.push(new Vector3(0, 0, 0));
+    points.push(new Vector3(0, 0, 13.5));
     points.push(new Vector3(13.5, 0, 13.5));
     points.push(new Vector3(13.5, 0, 0));
+    points.push(new Vector3(0, 0, 0));
+
+    // Service box 2
+    points.push(new Vector3(0, 0, 0));
+    points.push(new Vector3(0, 0, 13.5));
+    points.push(new Vector3(-13.5, 0, 13.5));
+    points.push(new Vector3(-13.5, 0, 0));
+    points.push(new Vector3(0, 0, 0));
+
+    // Service box 3
+    points.push(new Vector3(0, 0, 0));
+    points.push(new Vector3(0, 0, -13.5));
     points.push(new Vector3(13.5, 0, -13.5));
+    points.push(new Vector3(13.5, 0, 0));
+    points.push(new Vector3(0, 0, 0));
+
+    // Service box 4
+    points.push(new Vector3(0, 0, 0));
+    points.push(new Vector3(0, 0, -13.5));
     points.push(new Vector3(-13.5, 0, -13.5));
     points.push(new Vector3(-13.5, 0, 0));
     points.push(new Vector3(0, 0, 0));
-    points.push(new Vector3(0, 0, 13.5));
-    points.push(new Vector3(0, 0, -13.5));
-    points.push(new Vector3(0, 0, 0));
-    points.push(new Vector3(13.5, 0, 0));
 
     const geometry = new BufferGeometry().setFromPoints(points);
     const line = new Line(geometry, material);
     line.renderOrder = 1;
     this.scene.add(line);
+
+    const material1 = new LineBasicMaterial({ color: 0xffff });
+    const points1 = [];
+
+    // court lines
+    points1.push(new Vector3(-13.5, 0, -39));
+    points1.push(new Vector3(-13.5, 0, 39));
+    points1.push(new Vector3(13.5, 0, 39));
+    points1.push(new Vector3(13.5, 0, -39));
+    points1.push(new Vector3(-13.5, 0, -39));
+
+    const geometry1 = new BufferGeometry().setFromPoints(points1);
+    const line1 = new Line(geometry1, material1);
+    line1.renderOrder = 1;
+    this.scene.add(line1);
+
     // this.initBall(court);
   }
 
@@ -106,22 +138,33 @@ class World {
       // onLoad callback
       (texture: any) => {
         console.log('texture loaded');
+      (texture: any) => {
+        console.log('texture loaded');
         // in this example we create the material when the texture is loaded
+        const material = new MeshBasicMaterial({
         const material = new MeshBasicMaterial({
           map: texture,
           side: BackSide
         });
+        });
 
-        const skyboxGeo = new BoxGeometry(27, 80, 80);
+        const skyboxGeo = new BoxGeometry(40, 80, 100);
 
         const skybox = new Mesh(skyboxGeo, material);
-
         this.scene.add(skybox);
       },
 
       // onProgress callback currently not supported
       undefined,
+      // onProgress callback currently not supported
+      undefined,
 
+      // onError callback
+      function (err: any) {
+        console.error('An error happened.', err);
+      }
+    );
+  }
       // onError callback
       function (err: any) {
         console.error('An error happened.', err);
