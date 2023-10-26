@@ -19,7 +19,7 @@
     "@types/three": "^0.146.0",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "@typescript-eslint/parser": "^5.55.0",
-    "eslint": "^7.20.0",
+    "eslint": "^8.0.1",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jest": "^27.2.1",
