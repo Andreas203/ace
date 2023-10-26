@@ -10,6 +10,8 @@ import { Opponent } from './objects/Opponent';
 import { HardCourt } from './courts/CourtType';
 import { Court } from './objects/Court';
 import { TennisBall } from './objects/TennisBall';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { Racket } from './objects/Racket';
 
 class World {
   camera: PerspectiveCamera;
@@ -58,7 +60,9 @@ class World {
     const opponent = new Opponent(new Vector3(0, 0, 10), socket);
     this.initBall(court, player, opponent);
     // this.scene.add(player.playerMesh);
+    const racket = new Racket(this.scene);
     this.scene.add(opponent.playerMesh);
+
     this.loop.updatables.push(player);
     this.loop.updatables.push(opponent);
   }
