@@ -7,7 +7,6 @@ import { Player } from './objects/Player';
 import { Opponent } from './objects/Opponent';
 import { HardCourt } from './courts/CourtType';
 import { Court } from './objects/Court';
-import { Racket } from './objects/Racket';
 
 class World {
   camera: PerspectiveCamera;
@@ -56,12 +55,10 @@ class World {
     const opponent = new Opponent(new Vector3(0, 0, 10), socket);
     this.initBall(court, player, opponent);
     // this.scene.add(player.playerMesh);
-    const racket = new Racket(this.scene);
     this.scene.add(opponent.playerMesh);
 
     this.loop.updatables.push(player);
     this.loop.updatables.push(opponent);
-    this.loop.updatables.push(racket);
   }
 
   public initCourt () {
