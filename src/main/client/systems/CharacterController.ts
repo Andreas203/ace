@@ -1,12 +1,12 @@
-import { PerspectiveCamera, Vector2 } from "three";
+import { PerspectiveCamera, Vector2 } from 'three';
 
 class CharacterController {
   keys: any;
   mouse: any = new Vector2();
   target: any = new Vector2();
-  windowHalf: any = new Vector2( window.innerWidth / 2, window.innerHeight / 2 );
+  windowHalf: any = new Vector2(window.innerWidth / 2, window.innerHeight / 2);
   camera: PerspectiveCamera;
-constructor (camera: PerspectiveCamera) {
+  constructor (camera: PerspectiveCamera) {
     this.keys = {
       forward: false,
       backward: false,
@@ -20,8 +20,7 @@ constructor (camera: PerspectiveCamera) {
     document.addEventListener('keydown', (e) => this.OnKeyDown_(e), false);
     document.addEventListener('keyup', (e) => this._onKeyUp(e), false);
 
-    document.addEventListener( 'mousemove', (e) => this._onMouseMove(e), false );
-
+    document.addEventListener('mousemove', (e) => this._onMouseMove(e), false);
   }
 
   OnKeyDown_ (event: any) {
@@ -76,22 +75,17 @@ constructor (camera: PerspectiveCamera) {
     }
   }
 
-  _onMouseMove( event: any ) {
-
-    this.mouse.x = ( event.clientX - this.windowHalf.x );
-    this.mouse.y = ( event.clientY - this.windowHalf.x );
-
+  _onMouseMove (event: any) {
+    this.mouse.x = (event.clientX - this.windowHalf.x);
+    this.mouse.y = (event.clientY - this.windowHalf.x);
   }
 
+  animate () {
+    this.target.x = (1 - this.mouse.x) * 0.0002;
+    this.target.y = (1 - this.mouse.y) * 0.0002;
 
-  animate() {
-
-    this.target.x = ( 1 - this.mouse.x ) * 0.0002;
-    this.target.y = ( 1 - this.mouse.y ) * 0.0002;
-    
-    this.camera.rotation.x += 1 * ( this.target.y - this.camera.rotation.x );
-    this.camera.rotation.y += 1 * ( this.target.x - this.camera.rotation.y );
-
+    this.camera.rotation.x += 1 * (this.target.y - this.camera.rotation.x);
+    this.camera.rotation.y += 1 * (this.target.x - this.camera.rotation.y);
   }
 };
 

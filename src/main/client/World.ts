@@ -3,14 +3,10 @@ import { Resizer } from './systems/Resizer';
 import { PerspectiveCamera, Scene, Vector3, WebGLRenderer, LineBasicMaterial, BufferGeometry, Line, BoxGeometry, Mesh, MeshBasicMaterial, BackSide, TextureLoader } from 'three';
 
 import { Loop } from './systems/Loop';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { createControls } from './systems/controls';
 import { Player } from './objects/Player';
 import { Opponent } from './objects/Opponent';
 import { HardCourt } from './courts/CourtType';
 import { Court } from './objects/Court';
-import { TennisBall } from './objects/TennisBall';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { Racket } from './objects/Racket';
 
 class World {
@@ -65,6 +61,7 @@ class World {
 
     this.loop.updatables.push(player);
     this.loop.updatables.push(opponent);
+    this.loop.updatables.push(racket);
   }
 
   public initCourt () {

@@ -3,7 +3,6 @@ import { Court } from './Court';
 import { Player } from './Player';
 
 class TennisBall {
-
   SECONDS_PER_FRAME = 1 / 30;
   GRAVITY = -9.8;
   MASS = 0.58;
@@ -12,7 +11,6 @@ class TennisBall {
   player: Player;
   acceleration: Vector3;
   velocity: Vector3;
-
 
   constructor (court: Court, player: Player) {
     const geometry = new SphereGeometry(0.25, 32, 16);
@@ -34,13 +32,13 @@ class TennisBall {
     if (ballCollisionBox.intersectsBox(courtCollisionBox)) {
       this.acceleration.add(new Vector3(0, -(this.GRAVITY * this.SECONDS_PER_FRAME * 2), 0));
     }
-    console.log("Velocity before: ", this.velocity)
+    console.log('Velocity before: ', this.velocity);
     const exitVelocity = this.calculateFrameVelocity();
     this.velocity = exitVelocity;
-    console.log("Velocity after: ", this.velocity)
+    console.log('Velocity after: ', this.velocity);
 
     if (ballCollisionBox.intersectsBox(courtCollisionBox)) {
-      // this.velocity.y *= -0.8; 
+      // this.velocity.y *= -0.8;
     }
 
     this.ballMesh.position.add(this.velocity);
@@ -67,7 +65,6 @@ class TennisBall {
     const accel = this.acceleration.clone();
     return accel.multiplyScalar(this.SECONDS_PER_FRAME);
   }
-
 }
 
 export { TennisBall };

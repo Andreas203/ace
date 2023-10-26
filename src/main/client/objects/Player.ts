@@ -1,4 +1,4 @@
-import { BoxGeometry, Mesh, MeshBasicMaterial, PerspectiveCamera, Vector3 } from 'three';
+import { BoxGeometry, PerspectiveCamera } from 'three';
 import { CharacterController } from '../systems/CharacterController';
 
 class Player {
@@ -9,16 +9,15 @@ class Player {
     this.socket = socket;
     const geometry = new BoxGeometry(1, 4, 1);
     geometry.computeBoundingBox();
-    const material = new MeshBasicMaterial({ color: 0x00ff00 });
+    // const material = new MeshBasicMaterial({ color: 0x00ff00 });
     // this.playerMesh = new Mesh(geometry, material);
-    this.camera = camera
+    this.camera = camera;
     this.camera.position.set(0, 5, 10);
     // this.playerMesh.castShadow = true;
     this.controls = new CharacterController(this.camera);
   }
 
   tick () {
-
     if (this.controls.keys.forward && this.camera.position.z > 0) {
       this.camera.position.z -= 0.1;
     }

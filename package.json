@@ -9,7 +9,7 @@
     "client": "webpack serve --config ./src/main/client/webpack.dev.cjs",
     "server": "npx nodemon src/main/server/server.ts",
     "dev": "concurrently \"npm run client\" \"npm run server\"",
-    "lint": "npx eslint '**/*.ts'"
+    "lint": "npx eslint '**/*.ts' --fix"
   },
   "author": "",
   "license": "ISC",
