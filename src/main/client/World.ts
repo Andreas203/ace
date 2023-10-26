@@ -16,7 +16,7 @@ class World {
   scene: Scene;
   renderer: WebGLRenderer;
   loop: Loop;
-  controls: OrbitControls;
+  // controls: OrbitControls;
   resizer: Resizer;
 
   constructor (container: HTMLElement, camera: PerspectiveCamera) {
@@ -24,7 +24,7 @@ class World {
     this.scene = this.createScene();
     this.renderer = createRenderer();
     this.loop = new Loop(this.camera, this.scene, this.renderer);
-    this.controls = createControls(this.camera, this.renderer.domElement);
+    // this.controls = createControls(this.camera, this.renderer.domElement);
     this.resizer = new Resizer(container, this.camera, this.renderer);
     container.appendChild(this.renderer.domElement);
   }

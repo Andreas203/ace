@@ -1,6 +1,12 @@
+import { PerspectiveCamera, Vector2 } from "three";
+
 class CharacterController {
   keys: any;
-  constructor () {
+  mouse: any = new Vector2();
+  target: any = new Vector2();
+  windowHalf: any = new Vector2( window.innerWidth / 2, window.innerHeight / 2 );
+  camera: PerspectiveCamera;
+constructor (camera: PerspectiveCamera) {
     this.keys = {
       forward: false,
       backward: false,
@@ -9,8 +15,13 @@ class CharacterController {
       space: false,
       shift: false
     };
+    this.camera = camera;
+    console.log(this.windowHalf);
     document.addEventListener('keydown', (e) => this.OnKeyDown_(e), false);
     document.addEventListener('keyup', (e) => this._onKeyUp(e), false);
+
+    document.addEventListener( 'mousemove', (e) => this._onMouseMove(e), false );
+
   }
 
   OnKeyDown_ (event: any) {
@@ -63,6 +74,24 @@ class CharacterController {
       this.keys.shift = false;
       break;
     }
+  }
+
+  _onMouseMove( event: any ) {
+
+    this.mouse.x = ( event.clientX - this.windowHalf.x );
+    this.mouse.y = ( event.clientY - this.windowHalf.x );
+
+  }
+
+
+  animate() {
+
+    this.target.x = ( 1 - this.mouse.x ) * 0.0002;
+    this.target.y = ( 1 - this.mouse.y ) * 0.0002;
+    
+    this.camera.rotation.x += 1 * ( this.target.y - this.camera.rotation.x );
+    this.camera.rotation.y += 1 * ( this.target.x - this.camera.rotation.y );
+
   }
 };
 
