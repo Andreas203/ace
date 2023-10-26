@@ -6,7 +6,7 @@ COPY tsconfig*.json ./
 COPY ./src/main/server ./app
 
 RUN npm install -g ts-node
-RUN yarn install
+RUN npm install
 
 EXPOSE 3000
   

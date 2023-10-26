@@ -3,11 +3,15 @@ import { Court } from './Court';
 import { Player } from './Player';
 
 class TennisBall {
+  SECONDS_PER_FRAME = 1 / 30;
+  GRAVITY = -9.8;
+  MASS = 0.58;
   ballMesh: Mesh;
   court: Court;
   player: Player;
-  velocity: Vector3 = new Vector3(0, 0, 0);
-  acceleration: Vector3 = new Vector3(0, 0, 0);
+  acceleration: Vector3;
+  velocity: Vector3;
+
   constructor (court: Court, player: Player) {
     const geometry = new SphereGeometry(0.25, 32, 16);
     geometry.computeBoundingBox();
@@ -16,54 +20,50 @@ class TennisBall {
     this.ballMesh.position.set(5, 5, 5);
     this.court = court;
     this.player = player;
-  }
-
-  updatePosition (p: Vector3) {
-    this.ballMesh.position.set(p.x, p.y, p.z);
-  }
-
-  calculateFrameVelocity (velocity: Vector3, acceleration: Vector3, time: number) {
-    return velocity.add(acceleration.multiplyScalar(time));
+    this.acceleration = new Vector3(0, 0, 0);
+    this.velocity = new Vector3(0, 0, 0);
   }
 
   tick () {
-    const GRAVITY = 9.8;
-    const SECONDS_PER_FRAME = 1 / 60;
-    const MASS = 0.58;
-    const { ballCollisionBox, courtCollisionBox, playerCollisionBox } = this.collissionBoxes();
+    const { ballCollisionBox, courtCollisionBox } = this.collissionBoxes();
 
-    const force = new Vector3(0, -GRAVITY * SECONDS_PER_FRAME, 0.01);
-    if (ballCollisionBox.intersectsBox(playerCollisionBox)) {
-      force.z += 0.1;
-    }
-
-    this.acceleration.add(force.divideScalar(MASS));
-
-    const exitVelocity = this.calculateFrameVelocity(this.velocity, this.acceleration, SECONDS_PER_FRAME);
-    this.velocity = exitVelocity;
+    this.acceleration = new Vector3(0, this.GRAVITY * this.SECONDS_PER_FRAME, 0);
 
     if (ballCollisionBox.intersectsBox(courtCollisionBox)) {
-      this.velocity.y = (-this.velocity.y * 0.8);
+      this.acceleration.add(new Vector3(0, -(this.GRAVITY * this.SECONDS_PER_FRAME * 2), 0));
     }
-    if (ballCollisionBox.intersectsBox(playerCollisionBox)) {
-      this.velocity.z = -this.velocity.z;
+    console.log('Velocity before: ', this.velocity);
+    const exitVelocity = this.calculateFrameVelocity();
+    this.velocity = exitVelocity;
+    console.log('Velocity after: ', this.velocity);
+
+    if (ballCollisionBox.intersectsBox(courtCollisionBox)) {
+      // this.velocity.y *= -0.8;
     }
 
     this.ballMesh.position.add(this.velocity);
   }
 
-  collissionBoxes () {
+  private collissionBoxes () {
     const ballCollisionBox = new Box3();
     ballCollisionBox.copy(this.ballMesh.geometry.boundingBox || ballCollisionBox).applyMatrix4(this.ballMesh.matrixWorld);
 
     const courtCollisionBox = new Box3();
     courtCollisionBox.copy(this.court.courtMesh.geometry.boundingBox || ballCollisionBox).applyMatrix4(this.court.courtMesh.matrixWorld);
 
-    const playerCollisionBox = new Box3();
+    // const playerCollisionBox = new Box3();
+    // playerCollisionBox.copy(this.player.playerMesh.geometry.boundingBox || ballCollisionBox).applyMatrix4(this.player.playerMesh.matrixWorld);
 
-    playerCollisionBox.copy(this.player.playerMesh.geometry.boundingBox || ballCollisionBox).applyMatrix4(this.player.playerMesh.matrixWorld);
+    return { ballCollisionBox, courtCollisionBox };
+  }
 
-    return { ballCollisionBox, courtCollisionBox, playerCollisionBox };
+  private updatePosition (p: Vector3) {
+    this.ballMesh.position.set(p.x, p.y, p.z);
+  }
+
+  calculateFrameVelocity () {
+    const accel = this.acceleration.clone();
+    return accel.multiplyScalar(this.SECONDS_PER_FRAME);
   }
 }
 

@@ -8,13 +8,13 @@ WORKDIR /
 COPY package*.json ./
 
 # Install dependencies
-RUN yarn install
+RUN npm install
 
 # Copy the rest of the app code
 COPY . .
 
 # Build the app with Webpack
-RUN yarn run build
+RUN npm run build
 
 # Create a new stage to run the app
 FROM nginx:alpine
